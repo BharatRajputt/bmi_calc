@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    
+    <title>BMI Calculator</title>
+  </head>
+  <body>
+   
+    <div class="container">
+      <h1>BMI Calculator</h1>
+      <form onsubmit=getItemValue(event)>
+        <p><label>Height in Feet: </label><input type="text" id="height"/></p>
+        <p><label>Weight in KG: </label><input type="text" id="weight"/></p>
+        <button  onclick=getItemValue()>Calculate</button>
+        <div id="results" ></div>
+        <div id="weight-guide">
+          <h3>BMI Weight Guide</h3>
+          <p id="under" >Under Range: </p>
+          <p id="normal">Normal Range:  </p>
+          <p id="over">Overweight: </p>
+        </div>
+
+
+      </form>
+    </div>
+  </body>
+  <script >
+function getItemValue(event) {
+    event.preventDefault(); // Prevent the default behavior of the event
+
+    let weight = document.getElementById("weight").value;
+    let height = document.getElementById("height").value;
+    let height1 = height * 12;
+    let height2 = height1 * 0.025;
+
+    let newbmivalue = weight / (height2 * height2);
+    console.log(newbmivalue);
+
+    if (newbmivalue <= 18.6) {
+        document.getElementById('under').innerHTML = `Under Weight: ${newbmivalue}`;
+    } else if (newbmivalue > 18.6 && newbmivalue <= 24.9) {
+        document.getElementById('normal').innerHTML = `Normal Weight: ${newbmivalue}`;
+        console.log(event.target.newbmivalue);
+    } else {
+        document.getElementById('over').innerHTML = `Over Weight: ${newbmivalue}`;
+        console.log(newbmivalue);
+    }
+}
+
+
+ 
+  </script>
+</html>
